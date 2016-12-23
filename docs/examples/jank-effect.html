@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Jank Effect</title>
+    <style>
+        .ball{
+            position: relative;
+            height: 30px;
+            width: 30px;
+            /*border-radius: 30px;*/
+            background: red;
+            transition: 500ms linear all;
+
+        }
+        .move {
+            transform: translateX(500%);
+        }
+    </style>
+</head>
+<body>
+    <div class="ball ball_1"></div>
+    <hr>
+    <div class="ball ball_2"></div>
+    <hr>
+    <div class="ball ball_3"></div>
+    <hr>
+
+    <button onclick="moveBalls()">Move</button>
+
+    <script>
+        function moveBalls(){
+            var left= 0;
+            setInterval(function(){
+                left+=10;
+                document.querySelector('.ball_1').style.left = left + 'px';
+
+                requestAnimationFrame(function(){
+                    document.querySelector('.ball_2').style.transform = 'translateX(' + left + 'px)';//document.querySelector('.ball_2').style.marginLeft = left + 'px';
+
+                });
+
+            },160);
+            document.querySelector('.ball_3').classList.add('move');
+
+
+
+
+        }
+    </script>
+</body>
+</html>

@@ -10,24 +10,44 @@
                  data-separator="^\n\n\n"
                  data-separator-vertical="^\n\n">
             <script type="text/template">
-                ## Slide 1
+                # pixel-pipeline
+                understand the way the pixels renders in the browsers
 
 
+                ## User Experience
+                ###### the "jank" effect
 
-                ## Slide 2
+
+                * Most of the devices today render there screen 60 frame per second (60 FPS  or 60Hz).
+                * This means that every change on the screen need to in the interval of 16ms (1 second / 60 = 16.66ms).
+                * when this isn't done you get the "jank" effect.
+
+
+                look on [this](examples/jank-effect.html) example.
             </script>
         </section>
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/js/reveal.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/lib/js/head.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/lib/js/head.min.js"></script>
 <script>
     Reveal.initialize({
         dependencies: [
-            {src: "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/plugin/markdown/marked.min.js", condition: function() { return !!document.querySelector( '[data-markdown]' ); }},
-            {src: "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/plugin/markdown/markdown.min.js", condition: function() { return !!document.querySelector( '[data-markdown]' ); }}
+            {
+                src: "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/plugin/markdown/marked.min.js",
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/plugin/markdown/markdown.min.js",
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }
 
-        ]});
+        ]
+    });
 </script>
 </body>
 </html>
