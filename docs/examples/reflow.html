@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reflow</title>
+    <style>
+        .ball{
+            border-radius: 100px;
+            background: red;
+            height: 100px;
+            width: 100px;
+            position: relative;
+            animation: 2s ball-bounce alternate;
+            transform: translateZ(0);
+        }
+        @keyframes ball-bounce {
+            0%   {left:0;}
+            50%  {left:500px;}
+            100% {left:0;}
+        }
+
+    </style>
+</head>
+<body>
+    <div class="ball"></div>
+</body>
+</html>

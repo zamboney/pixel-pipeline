@@ -2,6 +2,13 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/css/reveal.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/css/theme/white.min.css">
+    <style>
+        .reveal section img {
+            background: transparent;
+            border: 0;
+            box-shadow: 0 0 0;
+        }
+    </style>
 </head>
 <body>
 <div class="reveal">
@@ -24,7 +31,7 @@
                 - when this isn't done you get the "jank" effect.
 
 
-                lets look on [this](examples/jank-effect.html) example.
+                lets look an [this](examples/jank-effect.html) example.
 
 
                 - we can see that in order to 'sticky' the circle:
@@ -38,8 +45,8 @@
                 ```
                 ```js
                 document.onscroll = function () {
-                    document.querySelector('h1').style.top =
-                        document.body.scrollTop + 'px';
+                        document.querySelector('h1').style.top =
+                            document.body.scrollTop + 'px';
                 }
                 ```
 
@@ -55,11 +62,133 @@
                 the jank disappears.
 
 
-                lets look on [this](examples/jank-effect-fixed.html) example.
+                lets look an [this](examples/jank-effect-fixed.html) example.
 
 
                 - This is a major jank that can be seen on small scale, most of the jank seen after abused methods.
                 - In this lecture we will discuss a thinks that will reduce the jank effect on high scale applications.
+
+
+
+                ## The Pixel Pipeline
+                ##### What Happen When a style changed
+
+
+                ### Painting is actually two tasks:
+                - Creating a list of draw calls.
+                - Filling in the pixels.
+
+
+                ### the complete pipeline is
+
+                ![alt text](./images/pixel-pipeline.jpg "pixel pipe line")
+
+
+                ###JavaScript:
+                Typically JavaScript is used to handle work that will result in visual changes.
+                * JavaScript that triggers a visual change.
+                * Css / Web, animations.
+                * Add new element to the DOM.
+
+
+                ###Style:
+                This is the process of figuring out which CSS rules apply to which elements based on matching selectors.
+                the computing time that take to get the element
+                ```css
+                    #main > div > div ul.first + ul {
+                    }
+                ```
+
+                ```css
+                    .main_div_div_ul_second {
+                    }
+                ```
+
+
+                ###Layout:
+                Once the browser knows which rules apply to an element it can begin to calculate how much space it takes up and where it is on screen.
+                ```html
+                <html>
+                ...
+                    <div style="margin-left:10px">
+                        ...
+                    </div>
+                ...
+                </html>
+                ```
+
+                ```html
+                <html>
+                ...
+                    <div style="margin-left:100px">
+                            ...
+                    </div>
+                ...
+                </html>
+                ```
+
+
+                ###Paint:
+                Painting is the process of filling in pixels.
+                - Image change.
+                - Font color change.
+
+
+                ###Compositing:
+                drawn to the screen in the correct order so that the page renders correctly.
+                this is the z-index of the drawing.
+
+
+
+                ##Effection the pipeline
+                what the browser do when there is a new call for draw.
+
+
+                ###Reflow:
+                - when the is a change with the element height, weight or position in the page.
+                - this will trigger all over the pipe line
+                    - JS / CSS > Style > Layout > Paint > Composite.
+                - [DEMO](examples/reflow.html)
+
+
+                ###Paint Only:
+                - when there is a change in the element color, background or shadow.
+                - the layout didn't change so expect of that the pipeline is the same.
+                    - JS / CSS > Style > Paint > Composite
+                - [DEMO](examples/paint.html)
+
+
+                ###Composite:
+                - when the change isn't effect the painting, like scrolling.
+                - this is change jump directly to Composite
+                    - JS / CSS > Style  > Composite
+                - [DEMO](examples/composite.html)
+
+
+                Find the [pipeline effects](https://csstriggers.com/).
+
+
+
+                ##javascript best practices
+                ##### organize your javascript in line with the pipeline.
+
+
+                ### from set-Timeout to request-Animation-Frame
+                - setTimeout start at any time on the frame
+                - requestAnimationFrame start at the beginning of the frame
+                - this way, when request or change a layout property, the request or change have more success to finish before the frame end.
+                - that give a smoothed feeling for the user.
+                - [Demo](examples/requestAnimationFrame.html)
+
+
+                ### working with web workers
+                - calculating in javascript take a great deal of resources.
+                - when the calculation take place in the main thread you may get the "jank" feeling.
+                - by excel the hard computing to a web worker, the main thread is free to handle with the UI.
+                - **BE CAREFUL**! export script that isn't effects the DOM.
+
+
+                - the
             </script>
         </section>
     </div>

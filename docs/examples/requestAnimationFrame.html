@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Request Animation Frame</title>
+    <style>
+        .ball {
+            border-radius: 100px;
+            background: red;
+            height: 100px;
+            width: 100px;
+            position: relative;
+            animation: 2s ball-bounce alternate;
+        }
+    </style>
+</head>
+<body>
+<div class="ball timeout"></div>
+<hr>
+<div class="ball raf"></div>
+<hr>
+<button onclick="start()">start</button>
+<script>
+    function start() {
+        var timeOutBall = document.querySelector('.timeout'),
+                rafBall = document.querySelector('.raf'),
+                left = 0;
+
+        function loop() {
+            setTimeout(function () {
+                left += 1;
+                timeOutBall.style.left = left + 'px';
+                requestAnimationFrame(function () {
+                    rafBall.style.left = left + 'px';
+                }.bind(this));
+                if (left <= 300) {
+                    loop();
+                }
+            }, 16);
+
+        }
+        loop();
+
+    }
+</script>
+</body>
+</html>

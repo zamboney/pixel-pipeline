@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paint</title>
+    <style>
+        .ball{
+            border-radius: 100px;
+            background: red;
+            height: 100px;
+            width: 100px;
+            position: relative;
+            animation: 2s ball-bounce alternate;
+        }
+        @keyframes ball-bounce {
+            0%   {background: red;}
+            50%  {background: green;}
+            100% {background: red;}
+        }
+
+    </style>
+</head>
+<body>
+    <div class="ball"></div>
+</body>
+</html>
