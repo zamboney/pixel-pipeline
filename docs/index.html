@@ -14,16 +14,52 @@
                 understand the way the pixels renders in the browsers
 
 
+
                 ## User Experience
                 ###### the "jank" effect
 
 
-                * Most of the devices today render there screen 60 frame per second (60 FPS  or 60Hz).
-                * This means that every change on the screen need to in the interval of 16ms (1 second / 60 = 16.66ms).
-                * when this isn't done you get the "jank" effect.
+                - Most of the devices today render there screen 60 frame per second (60 FPS  or 60Hz).
+                - This means that every change on the screen need to in the interval of 16ms (1 second / 60 = 16.66ms).
+                - when this isn't done you get the "jank" effect.
 
 
-                look on [this](examples/jank-effect.html) example.
+                lets look on [this](examples/jank-effect.html) example.
+
+
+                - we can see that in order to 'sticky' the circle:
+                    - the "h1" need to be "position: absolute".
+                    - a javascript script need to calculate the position from the top.
+                    - this script need to listen the "document.onscroll" event.
+                ```css
+                h1{
+                    position: absolute;
+                }
+                ```
+                ```js
+                document.onscroll = function () {
+                    document.querySelector('h1').style.top =
+                        document.body.scrollTop + 'px';
+                }
+                ```
+
+
+                when we remove the js section and change the
+                ```
+                 position: absolute;
+                ```
+                to
+                ```
+                position: fixed;
+                ```
+                the jank disappears.
+
+
+                lets look on [this](examples/jank-effect-fixed.html) example.
+
+
+                - This is a major jank that can be seen on small scale, most of the jank seen after abused methods.
+                - In this lecture we will discuss a thinks that will reduce the jank effect on high scale applications.
             </script>
         </section>
     </div>
@@ -32,6 +68,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/lib/js/head.min.js"></script>
 <script>
     Reveal.initialize({
+        history: true,
+        slideNumber: true,
         dependencies: [
             {
                 src: "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/plugin/markdown/marked.min.js",

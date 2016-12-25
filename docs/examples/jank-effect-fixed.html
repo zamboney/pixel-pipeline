@@ -8,7 +8,7 @@
             height: 10000px;
         }
         h1 {
-            position: absolute;
+            position: fixed;
             text-align: center;
             border: 1px solid black;
             height: 300px;
@@ -24,9 +24,9 @@
     <body>
     <h1>The Jank Effect</h1>
     <script>
-        document.onscroll = function () {
-            document.querySelector('h1').style.top = document.body.scrollTop + 'px';
-        }
+//        document.onscroll = function () {
+//            document.querySelector('h1').style.top = document.body.scrollTop + 'px';
+//        }
         </script>
     </body>
 </html>
