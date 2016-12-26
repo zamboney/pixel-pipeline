@@ -8,6 +8,25 @@
             border: 0;
             box-shadow: 0 0 0;
         }
+
+
+        .reveal blockquote {
+            text-align: left;
+            font-size: 25px;
+            background: #f9f9f9;
+            border-left: 10px solid #ccc;
+            margin: 1.5em auto;
+            padding: 0.5em 10px;
+            quotes: "\201C""\201D""\2018""\2019";
+        }
+        .reveal blockquote:before {
+            color: #ccc;
+            content: open-quote;
+            font-size: 4em;
+            line-height: 0.1em;
+            margin-right: 0.25em;
+            vertical-align: -0.4em;
+        }
     </style>
 </head>
 <body>
@@ -26,12 +45,15 @@
                 ###### the "jank" effect
 
 
+                ### What is "Jank"?
+                > Jank is any stuttering, juddering or just plain halting that users see when a site or app isn't keeping up with the refresh rate. Jank is the result of frames taking too long for a browser to make, and it negatively impacts your users and how they experience your site or app.
+                > ###### [jankfree.org](http://www.jankfree.org)
+
+
                 - Most of the devices today render there screen 60 frame per second (60 FPS  or 60Hz).
                 - This means that every change on the screen need to in the interval of 16ms (1 second / 60 = 16.66ms).
                 - when this isn't done you get the "jank" effect.
-
-
-                lets look an [this](examples/jank-effect.html) example.
+                ######lets look an [this](examples/jank-effect.html) example.
 
 
                 - we can see that in order to 'sticky' the circle:
