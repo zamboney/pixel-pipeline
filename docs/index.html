@@ -57,12 +57,12 @@
 
 
                 - we can see that in order to 'sticky' the circle:
-                    - the "h1" need to be "position: absolute".
+                    - the "h1" is "position: absolute".
                     - a javascript script need to calculate the position from the top.
-                    - this script need to listen the "document.onscroll" event.
+                    - the script need to listen the "document.onscroll" event.
                 ```css
                 h1{
-                    position: absolute;
+                        position: absolute;
                 }
                 ```
                 ```js
@@ -82,18 +82,16 @@
                 position: fixed;
                 ```
                 the jank disappears.
-
-
                 lets look an [this](examples/jank-effect-fixed.html) example.
 
 
-                - This is a major jank that can be seen on small scale, most of the jank seen after abused methods.
-                - In this lecture we will discuss a thinks that will reduce the jank effect on high scale applications.
+                - This is a major jank that can be seen on small scale, most of the jank seen after abused the rendering system.
+                - In this lecture we will discuss how to find and fix long frame rate that cause "jank".
 
 
 
                 ## The Pixel Pipeline
-                ##### What Happen When a style changed
+                ##### The Way CSS/JS effect the rendering of the screen.
 
 
                 ### Painting is actually two tasks:
@@ -103,7 +101,7 @@
 
                 ### the complete pipeline is
 
-                ![alt text](./images/pixel-pipeline.jpg "pixel pipe line")
+                ![alt text](./images/JS-CSS_Style_Layout_Paint_Composite.png "pixel pipe line")
 
 
                 ###JavaScript:
@@ -167,27 +165,28 @@
 
 
                 ###Reflow:
-                - when the is a change with the element height, weight or position in the page.
+                - when there is a change with the element height, weight or position in the page.
                 - this will trigger all over the pipe line
-                    - JS / CSS > Style > Layout > Paint > Composite.
-                - [DEMO](examples/reflow.html)
+                ![alt text](./images/JS-CSS_Style_Layout_Paint_Composite.png "pixel pipe line")
+                - [Example](examples/reflow.html)
 
 
                 ###Paint Only:
                 - when there is a change in the element color, background or shadow.
                 - the layout didn't change so expect of that the pipeline is the same.
-                    - JS / CSS > Style > Paint > Composite
-                - [DEMO](examples/paint.html)
+                ![alt text](./images/JS-CSS_Style_Paint_Composite.png "pixel pipe line")
+                - [Example](examples/paint.html)
 
 
                 ###Composite:
                 - when the change isn't effect the painting, like scrolling.
                 - this is change jump directly to Composite
-                    - JS / CSS > Style  > Composite
-                - [DEMO](examples/composite.html)
+                ![alt text](./images/JS-CSS_Style_Composite.png "pixel pipe line")
+                - [Example](examples/composite.html)
 
 
-                Find the [pipeline effects](https://csstriggers.com/).
+                ![alt text](./images/csstriggers.png "csstriggers.com")
+                - Find the [pipeline effects](https://csstriggers.com/).
 
 
 
@@ -200,7 +199,6 @@
                 - requestAnimationFrame start at the beginning of the frame
                 - this way, when request or change a layout property, the request or change have more success to finish before the frame end.
                 - that give a smoothed feeling for the user.
-                - [Demo](examples/requestAnimationFrame.html)
 
 
                 ### working with web workers
