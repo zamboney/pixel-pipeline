@@ -86,7 +86,7 @@
 
 
                 - This is a major jank that can be seen on small scale, most of the jank seen after abused the rendering system.
-                - In this lecture we will discuss how to find and fix long frame rate that cause "jank".
+                - In this lecture we will understand the way the pixel pipe line work, a cases of pipes and then we will discuss how to find and fix long frame rate that cause "jank".
 
 
 
@@ -106,19 +106,47 @@
 
                 ###JavaScript:
                 Typically JavaScript is used to handle work that will result in visual changes.
+
+
                 * JavaScript that triggers a visual change.
+                    ```js
+                        document.querySelector('div').style.top =
+                            document.body.scrollTop + 'px';
+                    ```
                 * Css / Web, animations.
+                    ```css
+                        animation: 2s animate alternate;
+                    ```
                 * Add new element to the DOM.
+                    ```js
+                        document.body.appendChild(
+                            document.createElement('span'));
+                    ```
 
 
                 ###Style:
                 This is the process of figuring out which CSS rules apply to which elements based on matching selectors.
                 the computing time that take to get the element
+
+
+                expensive work on the style
+                ```html
+                    <div id="main"><div>...<div>
+                        <ul class="first"></ul><ul></ul>
+                    </div></div></div>
+                ```
+
                 ```css
                     #main > div > div ul.first + ul {
                     }
                 ```
 
+                cheep work on the style
+                ```html
+                <div id="main"><div>...<div>
+                    <ul class="first"></ul><ul class="main_div_div_ul_second"></ul>
+                </div></div></div>
+                ```
                 ```css
                     .main_div_div_ul_second {
                     }
@@ -130,7 +158,7 @@
                 ```html
                 <html>
                 ...
-                    <div style="margin-left:10px">
+                    <div style="width:100px">
                         ...
                     </div>
                 ...
@@ -140,7 +168,7 @@
                 ```html
                 <html>
                 ...
-                    <div style="margin-left:100px">
+                    <div style="width:300px">
                             ...
                     </div>
                 ...
@@ -152,6 +180,24 @@
                 Painting is the process of filling in pixels.
                 - Image change.
                 - Font color change.
+                <html>
+                    ...
+                        <div style="color:black">
+                        ...
+                        </div>
+                    ...
+                </html>
+                ```
+
+                ```html
+                <html>
+                    ...
+                        <div style="color:blue">
+                            ...
+                        </div>
+                    ...
+                </html>
+                ```
 
 
                 ###Compositing:
@@ -190,8 +236,16 @@
 
 
 
-                ##javascript best practices
-                ##### organize your javascript in line with the pipeline.
+                ##best practices
+                ##### organize your javascript and style to get the best of the pixel pipeline.
+
+
+                ### Layout Thrashing
+                - getting element style cost performance from the browser.
+                - so don't abuse the browser by calling a element style.
+                - if it's must then do it as less as passable.
+                - [Thrashing Example](examples/layoutThrashing.html)
+                - [Fix Thrashing Example](examples/layoutThrashing_fix.html)
 
 
                 ### from set-Timeout to request-Animation-Frame
@@ -199,16 +253,42 @@
                 - requestAnimationFrame start at the beginning of the frame
                 - this way, when request or change a layout property, the request or change have more success to finish before the frame end.
                 - that give a smoothed feeling for the user.
+                ```js
+                    setTimeout(function(){/*CODE*/},1000);
+                ```
+                ```js
+                    setTimeout(function(){
+                        requestAnimationFrame(function(){/*CODE*/});
+                    },1000)
+                ```
 
 
-                ### working with web workers
+                ### Working With Web Workers
                 - calculating in javascript take a great deal of resources.
                 - when the calculation take place in the main thread you may get the "jank" feeling.
                 - by excel the hard computing to a web worker, the main thread is free to handle with the UI.
                 - **BE CAREFUL**! export script that isn't effects the DOM.
 
 
-                - the
+                ### Paint Storms 1/2
+                - the browser is useg rectangle to paint the screen.
+                - this rectangle can be in difference size and there size impact the rendering of the screen.
+                - in order to optimize the rendering the rectangle should be as small as passable.
+                - when a small change in the screen effect the intare screen it's call paint storm.
+
+
+                ### Paint Storms 2/2
+                - to reduce the paint storm, elements can have there own "Composite Layer" by using css like so:
+                ```css
+                element { translateZ(0)}
+                ```
+                or
+                ```css
+                element { backface-visibility: hidden}
+                ```
+                - [Paint Storm Example](examples/paint-storm.html)
+
+
             </script>
         </section>
     </div>

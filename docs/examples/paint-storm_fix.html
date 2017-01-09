@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paint Storm</title>
+    <style>
+        html,body{
+            height: 500%;
+        }
+        .ball {
+            border-radius: 100px;
+            height: 100px;
+            width: 100px;
+            display: inline-block;
+            background: red;
+        }
+        .green {
+            background: green;
+        }
+        .blue {
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="ball red"></div>
+    <div class="ball green"></div>
+    <div class="ball blue"></div>
+    <script>
+        var ticking = false,
+                redTop = 0,
+                blueTop = 0,
+                greenTop = 0,
+                scrollTop = document.body.scrollTop;
+
+        function setPosition(){
+            var red = document.querySelector('.red'),
+                    blue = document.querySelector('.blue'),
+                    green = document.querySelector('.green');
+            if(scrollTop < document.body.scrollTop){
+                redTop += 10;
+                blueTop += 13;
+                greenTop += 9;
+
+            } else {
+                redTop -= 10;
+                blueTop -= 13;
+                greenTop -= 9;
+
+            }
+            scrollTop = document.body.scrollTop;
+            red.style.transform = 'translate3d(10px,' + (document.body.scrollTop + redTop) + 'px, 0)';
+            blue.style.transform = 'translate3d(50px,' + (document.body.scrollTop + blueTop) + 'px, 0)';
+            green.style.transform = 'translate3d(50px,' + (document.body.scrollTop + greenTop) + 'px, 0)';
+            ticking = false;
+        }
+        document.onscroll = function () {
+            if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(function(){setPosition()}.bind(this));
+            }
+        };
+        setPosition();
+    </script>
+</body>
+</html>

@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Composite</title>
+    <title>Paint</title>
     <style>
-        body{
-            height: 10000px;
-        }
-        .ball{
-            border-radius: 100px;
-            background: red;
-            height: 100px;
+        .ball {
             width: 100px;
-            position: fixed;
-
+            height: 100px;
+            background: red;
+            animation: 2s ball-bounce alternate;
+        }
+        @keyframes ball-bounce {
+            0%   {opacity: 1;}
+            50%  {opacity: 0;}
+            100% {opacity: 1;}
         }
 
     </style>
 </head>
-<body>
-    <div class="ball"></div>
+<body class="change_color">
+<div class="ball"></div>
 </body>
 </html>

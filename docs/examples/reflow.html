@@ -4,24 +4,92 @@
     <meta charset="UTF-8">
     <title>Reflow</title>
     <style>
-        .ball{
+        .ball {
             border-radius: 100px;
             background: red;
             height: 100px;
             width: 100px;
-            position: relative;
-            animation: 2s ball-bounce alternate;
-            transform: translateZ(0);
+            display: inline-block;
         }
-        @keyframes ball-bounce {
-            0%   {left:0;}
-            50%  {left:500px;}
-            100% {left:0;}
+
+        .change_width {
+            animation: 2s change_width alternate;
+        }
+
+        @keyframes change_width {
+            0% {
+                width: 100%;
+            }
+            50% {
+                width: 10%;
+            }
+            100% {
+                width: 100%;
+            }
         }
 
     </style>
 </head>
-<body>
-    <div class="ball"></div>
-</body>
+    <body class="change_width">
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+    </body>
 </html>

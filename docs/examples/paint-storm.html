@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paint Storm</title>
+    <style>
+        html,body{
+            height: 500%;
+        }
+        .ball {
+            left:10px;
+            border-radius: 100px;
+            height: 100px;
+            width: 100px;
+            display: inline-block;
+            background: red;
+            position: absolute;
+        }
+        .green {
+            left: 150px;
+            background: green;
+        }
+        .blue {
+            left: 290px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="ball red"></div>
+    <div class="ball green"></div>
+    <div class="ball blue"></div>
+    <script>
+        var ticking = false,
+                redTop = 0,
+                blueTop = 0,
+                greenTop = 0,
+                scrollTop = document.body.scrollTop;
+
+        function setPosition(){
+            var red = document.querySelector('.red'),
+                    blue = document.querySelector('.blue'),
+                    green = document.querySelector('.green');
+            if(scrollTop < document.body.scrollTop){
+                redTop += 10;
+                blueTop += 13;
+                greenTop += 9;
+
+            } else {
+                redTop -= 10;
+                blueTop -= 13;
+                greenTop -= 9;
+
+            }
+            scrollTop = document.body.scrollTop;
+            red.style.top = (document.body.scrollTop + redTop) + 'px';
+            blue.style.top = (document.body.scrollTop + blueTop) + 'px';
+            green.style.top = (document.body.scrollTop + greenTop) + 'px';
+            ticking = false;
+        }
+        document.onscroll = function () {
+            if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(function(){setPosition()}.bind(this));
+            }
+        };
+    </script>
+</body>
+</html>
