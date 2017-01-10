@@ -141,6 +141,7 @@
                     }
                 ```
 
+
                 cheep work on the style
                 ```html
                 <div id="main"><div>...<div>
@@ -209,7 +210,8 @@
                 this is **NOT** the z-index css attribute!
 
 
-                ##Effection the pipeline
+
+                ##Effect the pipeline
                 what the browser do when there is a new call for draw.
 
 
@@ -231,7 +233,6 @@
                 - when the change isn't effect the painting, like scrolling.
                 - this is change jump directly to Composite
                 ![alt text](./images/JS-CSS_Style_Composite.png "pixel pipe line")
-                - [Example](examples/composite.html)
 
 
                 ![alt text](./images/csstriggers.png "csstriggers.com")
@@ -247,8 +248,38 @@
                 - getting element style cost performance from the browser.
                 - so don't abuse the browser by calling a element style.
                 - if it's must then do it as less as passable.
+
+
+                ### Layout Thrashing (explain example)
                 - [Thrashing Example](examples/layoutThrashing.html)
+
+                Issue Code:
+                ```js
+                for (var p = 0; p < balls.length; p++) {
+                        var width = div.offsetWidth;
+                        var b = balls[p];
+                        b.style.marginLeft = width + 'px';
+                }
+                ```
+
                 - [Fix Thrashing Example](examples/layoutThrashing_fix.html)
+
+                Fix Code:
+                ```js
+                var width = div.offsetWidth;
+                for (var p = 0; p < balls.length; p++) {
+                    var b = balls[p];
+                    b.style.marginLeft = width + 'px';
+                }
+                ```
+
+
+                ### From Javascript to Css Animation
+                - using javascript get great deal of browser resources.
+                - by moving the javascript animation to css animation the user will notice a smooth UX
+                - [Javascript Animation Example](examples/Javascript-animation-example.html).
+                - [Css Animation Example](examples/css-animation-example.html).
+                - [Side by Side](examples/animation-side-by-side.html).
 
 
                 ### from set-Timeout to request-Animation-Frame
@@ -270,14 +301,15 @@
                 - calculating in javascript take a great deal of resources.
                 - when the calculation take place in the main thread you may get the "jank" feeling.
                 - by excel the hard computing to a web worker, the main thread is free to handle with the UI.
-                - **BE CAREFUL**! export script that isn't effects the DOM.
+                - **BE CAREFUL**! export script that isn't effects the DOM directly.
 
 
                 ### Paint Storms 1/2
                 - the browser is using rectangle to paint the screen.
-                - this rectangle can be in difference size and there size impact the rendering of the screen.
+                - this rectangle can be in difference size and their size impact the rendering of the screen.
                 - in order to optimize the rendering the rectangle should be as small as passable.
-                - when a small change in the screen effect the intare screen it's call paint storm.
+                - when a small change in the screen effect the entire screen
+                - this is call paint storm.
 
 
                 ### Paint Storms 2/2
@@ -300,7 +332,11 @@
                 - [parallax](https://www.html5rocks.com/en/tutorials/speed/parallax/)
 
 
-                ##
+
+                ### Tank You
+                Ran Itzhaki
+                [rani@sela.co.il](mailto:rani@sela.co.il)
+
 
 
             </script>

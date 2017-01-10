@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript Animation Example</title>
+    <style>
+        .ball {
+            left:10px;
+            border-radius: 100px;
+            height: 100px;
+            width: 100px;
+            display: inline-block;
+            background: red;
+            position: absolute;
+            animation: 1.45s move linear forwards;
+
+        }
+        @keyframes move {
+            0% {margin-left: 0;}
+            100% {margin-left: 300px;}
+        }
+    </style>
+</head>
+<body>
+    <div class="ball"></div>
+</body>
+</html>

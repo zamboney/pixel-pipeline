@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rectangle Demo</title>
+    <style>
+        .ball {
+            left:10px;
+            border-radius: 100px;
+            height: 100px;
+            width: 100px;
+            display: inline-block;
+            background: red;
+            position: absolute;
+            animation: 1.45s move linear infinite;
+
+        }
+        @keyframes move {
+            0% {
+                margin-left: 0;
+            }
+            50%{
+                margin-left: 100px;
+            }
+            100% {
+                margin-left: 0;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="ball"></div>
+</body>
+</html>

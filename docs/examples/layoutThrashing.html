@@ -57,13 +57,13 @@
 </div>
 <script>
     setTimeout(function () {
-        var paragraphs = document.querySelectorAll('.ball'),
+        var balls = document.querySelectorAll('.ball'),
                 div = document.querySelector('div#main');
 
-        for (var p = 0; p < paragraphs.length; p++) {
+        for (var p = 0; p < balls.length; p++) {
             var width = div.offsetWidth;
-            var para = paragraphs[p];
-            para.style.marginLeft = width + 'px';
+            var b = balls[p];
+            b.style.marginLeft = width + 'px';
         }
     }, 1000);
 </script>
