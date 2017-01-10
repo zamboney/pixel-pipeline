@@ -63,7 +63,7 @@ lets look an [this](https://zamboney.github.io/pixel-pipeline/examples/jank-effe
 
 ### the complete pipeline is
 
-![alt text](.https://zamboney.github.io/pixel-pipeline/images/JS-CSS_Style_Layout_Paint_Composite.png "pixel pipe line")
+![alt text](https://zamboney.github.io/pixel-pipeline/images/JS-CSS_Style_Layout_Paint_Composite.png "pixel pipe line")
 
 
 ###JavaScript:
@@ -180,24 +180,24 @@ what the browser do when there is a new call for draw.
 ###Reflow:
 - when there is a change with the element height, weight or position in the page.
 - this will trigger all over the pipe line
-![alt text](.https://zamboney.github.io/pixel-pipeline/images/JS-CSS_Style_Layout_Paint_Composite.png "pixel pipe line")
+![alt text](https://zamboney.github.io/pixel-pipeline/images/JS-CSS_Style_Layout_Paint_Composite.png "pixel pipe line")
 - [Example](https://zamboney.github.io/pixel-pipeline/examples/reflow.html)
 
 
 ###Paint Only:
 - when there is a change in the element color, background or shadow.
 - the layout didn't change so expect of that the pipeline is the same.
-![alt text](.https://zamboney.github.io/pixel-pipeline/images/JS-CSS_Style_Paint_Composite.png "pixel pipe line")
+![alt text](https://zamboney.github.io/pixel-pipeline/images/JS-CSS_Style_Paint_Composite.png "pixel pipe line")
 - [Example](https://zamboney.github.io/pixel-pipeline/examples/paint.html)
 
 
 ###Composite:
 - when the change isn't effect the painting, like scrolling.
 - this is change jump directly to Composite
-![alt text](.https://zamboney.github.io/pixel-pipeline/images/JS-CSS_Style_Composite.png "pixel pipe line")
+![alt text](https://zamboney.github.io/pixel-pipeline/images/JS-CSS_Style_Composite.png "pixel pipe line")
 
 
-![alt text](.https://zamboney.github.io/pixel-pipeline/images/csstriggers.png "csstriggers.com")
+![alt text](https://zamboney.github.io/pixel-pipeline/images/csstriggers.png "csstriggers.com")
 - Find the [pipeline effects](https://csstriggers.com/).
 
 
