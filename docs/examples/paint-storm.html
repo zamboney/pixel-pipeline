@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <title>Paint Storm</title>
     <style>
-        html,body{
-            height: 500%;
+        body {
+            overflow: hidden;
         }
+
         .ball {
-            left:10px;
+            left: 10px;
             border-radius: 100px;
             height: 100px;
             width: 100px;
-            display: inline-block;
             background: red;
             position: absolute;
         }
+
         .green {
             left: 150px;
             background: green;
         }
+
         .blue {
             left: 290px;
             background: blue;
@@ -27,43 +29,40 @@
     </style>
 </head>
 <body>
-    <div class="ball red"></div>
-    <div class="ball green"></div>
-    <div class="ball blue"></div>
-    <script>
-        var ticking = false,
-                redTop = 0,
-                blueTop = 0,
-                greenTop = 0,
-                scrollTop = document.body.scrollTop;
+<div class="ball red"></div>
+<div class="ball green"></div>
+<div class="ball blue"></div>
+<script>
+    var ticking = false,
+            redTop = 0,
+            blueTop = 0,
+            greenTop = 0,
+            timer = -1,
+            winHeight = screen.height;
 
-        function setPosition(){
-            var red = document.querySelector('.red'),
-                    blue = document.querySelector('.blue'),
-                    green = document.querySelector('.green');
-            if(scrollTop < document.body.scrollTop){
-                redTop += 10;
-                blueTop += 13;
-                greenTop += 9;
+    function setPosition() {
+        var red = document.querySelector('.red'),
+                blue = document.querySelector('.blue'),
+                green = document.querySelector('.green');
 
-            } else {
-                redTop -= 10;
-                blueTop -= 13;
-                greenTop -= 9;
+        redTop += parseInt(Math.random() * 20);
+        blueTop += parseInt(Math.random() * 20);
+        greenTop += parseInt(Math.random() * 20);
 
-            }
-            scrollTop = document.body.scrollTop;
-            red.style.top = (document.body.scrollTop + redTop) + 'px';
-            blue.style.top = (document.body.scrollTop + blueTop) + 'px';
-            green.style.top = (document.body.scrollTop + greenTop) + 'px';
-            ticking = false;
+
+        red.style.top = redTop + 'px';
+        blue.style.top = blueTop + 'px';
+        green.style.top = greenTop + 'px';
+        if (greenTop > winHeight && redTop > winHeight && blueTop > winHeight) {
+            clearInterval(timer);
         }
-        document.onscroll = function () {
-            if (!ticking) {
-                ticking = true;
-                requestAnimationFrame(function(){setPosition()}.bind(this));
-            }
-        };
-    </script>
+
+    }
+    timer = setInterval(function () {
+        requestAnimationFrame(function () {
+            setPosition()
+        }.bind(this));
+    }, 20);
+</script>
 </body>
 </html>

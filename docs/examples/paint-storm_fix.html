@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Paint Storm</title>
     <style>
-        html,body{
-            height: 500%;
+        body{
+            overflow: hidden;
         }
         .ball {
             border-radius: 100px;
@@ -27,40 +27,33 @@
     <div class="ball green"></div>
     <div class="ball blue"></div>
     <script>
-        var ticking = false,
-                redTop = 0,
+        var redTop = 0,
                 blueTop = 0,
                 greenTop = 0,
-                scrollTop = document.body.scrollTop;
+                timer = -1,
+                winHeight = screen.height;
 
-        function setPosition(){
+        function setPosition() {
             var red = document.querySelector('.red'),
                     blue = document.querySelector('.blue'),
                     green = document.querySelector('.green');
-            if(scrollTop < document.body.scrollTop){
-                redTop += 10;
-                blueTop += 13;
-                greenTop += 9;
 
-            } else {
-                redTop -= 10;
-                blueTop -= 13;
-                greenTop -= 9;
-
+            redTop += parseInt(Math.random() * 20);
+            blueTop += parseInt(Math.random() * 20);
+            greenTop += parseInt(Math.random() * 20);
+            red.style.transform = 'translate3d(10px,' + redTop + 'px, 0)';
+            blue.style.transform = 'translate3d(70px,' +  blueTop + 'px, 0)';
+            green.style.transform = 'translate3d(50px,' +  greenTop + 'px, 0)';
+            if (greenTop > winHeight && redTop > winHeight && blueTop > winHeight) {
+                clearInterval(timer);
             }
-            scrollTop = document.body.scrollTop;
-            red.style.transform = 'translate3d(10px,' + (document.body.scrollTop + redTop) + 'px, 0)';
-            blue.style.transform = 'translate3d(50px,' + (document.body.scrollTop + blueTop) + 'px, 0)';
-            green.style.transform = 'translate3d(50px,' + (document.body.scrollTop + greenTop) + 'px, 0)';
-            ticking = false;
+
         }
-        document.onscroll = function () {
-            if (!ticking) {
-                ticking = true;
-                requestAnimationFrame(function(){setPosition()}.bind(this));
-            }
-        };
-        setPosition();
+        timer = setInterval(function () {
+            requestAnimationFrame(function () {
+                setPosition()
+            }.bind(this));
+        }, 20);
     </script>
 </body>
 </html>
